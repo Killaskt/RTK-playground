@@ -3,7 +3,11 @@ import "./App.css";
 import { useState } from "react";
 import { useSelector } from "react-redux";
 import { useDispatch } from "react-redux";
-import { decrement, increment } from "./redux/counter/counter";
+import {
+    decrement,
+    increment,
+    incrementByAmount,
+} from "./redux/counter/counter";
 
 function App() {
     const { count } = useSelector((state) => state.counter);
@@ -33,6 +37,20 @@ function App() {
                     <button onClick={() => dispatch(decrement())}>
                         DECREMENT
                     </button>
+                    <form
+                        action=""
+                        onSubmit={(e) => {
+                            e.preventDefault();
+                            dispatch(
+                                incrementByAmount(
+                                    document.getElementById("incTF").value * 1
+                                )
+                            );
+                        }}
+                    >
+                        <input type="number" name="incrementBy" id="incTF" />
+                        <button type="submit">Add</button>
+                    </form>
                 </div>
             </header>
         </div>
